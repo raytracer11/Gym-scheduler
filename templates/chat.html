@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Health Assistant - HealthAI{% endblock %}
+
+{% block extra_head %}
+<!-- Add Markdown-it for rendering markdown -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@12.0.4/dist/markdown-it.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-4">
+    <div class="stats-card rounded-xl shadow-lg p-6">
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-semibold text-blue-400">AI Health Assistant</h1>
+                <p class="text-gray-400">Ask me anything about your health, diet, or workout routine</p>
+            </div>
+        </div>
+
+        <style>
+            .prose h1, .prose h2, .prose h3, .prose h4 {
+                color: #e2e8f0;
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+            }
+            .prose ul {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+            .prose li {
+                margin-bottom: 0.25em;
+            }
+            .prose strong {
+                color: #60a5fa;
+            }
+            .prose em {
+                color: #94a3b8;
+            }
+            .markdown-content {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+        </style>
+
+        <div class="chat-container rounded-lg p-4 h-[60vh] overflow-y-auto mb-4" id="chat-messages">
+            <!-- Welcome message -->
+            <div class="mb-4">
+                <div class="ai-message inline-block px-4 py-3 rounded-lg max-w-[80%]">
+                    <div class="prose prose-invert prose-sm">
+                        <h4 class="font-bold text-gray-200 mt-0 mb-1">Welcome to Your Health Assistant!</h4>
+                        <p class="m-0">I can help you with:</p>
+                        <ul class="list-disc ml-4 mt-1 mb-1">
+                            <li>Personalized workout recommendations</li>
+                            <li>Diet and nutrition advice</li>
+                            <li>Progress tracking insights</li>
+                            <li>General health questions</li>
+                        </ul>
+                        <p class="m-0">My responses will be organized into clear sections with actionable advice. How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+            
+            {% for chat in chat_history %}
+            <div class="mb-4 text-right">
+                <div class="user-message inline-block px-4 py-3 rounded-lg max-w-[80%]">
+                    {{ chat.message }}
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="ai-message inline-block px-4 py-3 rounded-lg max-w-[80%]">
+                    <div class="prose prose-invert prose-sm markdown-content">
+                        {{ chat.response }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <form id="chat-form" class="flex gap-4">
+            {% csrf_token %}
+            <input type="text" 
+                   id="chat-input"
+                   class="input-field flex-1 px-4 py-2 rounded-lg" 
+                   placeholder="Type your message here..."
+                   required>
+            <button type="submit" 
+                    class="button-primary px-6 py-2 rounded-lg flex items-center space-x-2">
+                <span>Send</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Quick Questions -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <button onclick="askQuestion('What should I eat before my workout?')"
+                class="p-4 stats-card rounded-lg shadow-sm hover:bg-gray-800 transition-colors text-left">
+            <h3 class="font-medium mb-1 text-blue-400">Pre-workout Nutrition</h3>
+            <p class="text-sm text-gray-400">Learn what to eat before exercising</p>
+        </button>
+        
+        <button onclick="askQuestion('How can I improve my sleep quality?')"
+                class="p-4 stats-card rounded-lg shadow-sm hover:bg-gray-800 transition-colors text-left">
+            <h3 class="font-medium mb-1 text-blue-400">Sleep Quality Tips</h3>
+            <p class="text-sm text-gray-400">Get advice for better sleep</p>
+        </button>
+        
+        <button onclick="askQuestion('What exercises are best for my fitness goal?')"
+                class="p-4 stats-card rounded-lg shadow-sm hover:bg-gray-800 transition-colors text-left">
+            <h3 class="font-medium mb-1 text-blue-400">Personalized Workout Plan</h3>
+            <p class="text-sm text-gray-400">Get exercises tailored to your goals</p>
+        </button>
+        
+        <button onclick="askQuestion('How can I stay motivated with my fitness journey?')"
+                class="p-4 stats-card rounded-lg shadow-sm hover:bg-gray-800 transition-colors text-left">
+            <h3 class="font-medium mb-1 text-blue-400">Motivation Tips</h3>
+            <p class="text-sm text-gray-400">Stay consistent with your goals</p>
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Initialize markdown-it
+const md = window.markdownit();
+
+document.getElementById('chat-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const message = input.value;
+    input.value = '';
+
+    // Add user message to chat
+    addMessage('user', message);
+
+    // Show typing indicator
+    showTypingIndicator();
+
+    // Send to backend and get AI response
+    try {
+        const formData = new FormData();
+        formData.append('message', message);
+        formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+        
+        const response = await fetch('/api/chat/', {
+            method: 'POST',
+            body: formData
+        });
+        
+        // Remove typing indicator
+        removeTypingIndicator();
+        
+        const data = await response.json();
+        if (data.status === 'success') {
+            addMessage('ai', data.response);
+        } else {
+            addMessage('ai', 'Error: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        removeTypingIndicator();
+        addMessage('ai', 'Sorry, I encountered an error. Please try again.');
+    }
+});
+
+function addMessage(type, content) {
+    const messages = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `mb-4 ${type === 'user' ? 'text-right' : ''}`;
+    
+    const bubble = document.createElement('div');
+    bubble.className = type === 'user' 
+        ? 'user-message inline-block px-4 py-3 rounded-lg max-w-[80%]'
+        : 'ai-message inline-block px-4 py-3 rounded-lg max-w-[80%]';
+    
+    if (type === 'ai') {
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'prose prose-invert prose-sm markdown-content';
+        contentDiv.innerHTML = md.render(content);
+        bubble.appendChild(contentDiv);
+    } else {
+        bubble.textContent = content;
+    }
+    
+    messageDiv.appendChild(bubble);
+    messages.appendChild(messageDiv);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function showTypingIndicator() {
+    const messages = document.getElementById('chat-messages');
+    const indicator = document.createElement('div');
+    indicator.id = 'typing-indicator';
+    indicator.className = 'mb-4';
+    indicator.innerHTML = `
+        <div class="ai-message inline-block px-4 py-2 rounded-lg">
+            <div class="flex space-x-2">
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+            </div>
+        </div>
+    `;
+    messages.appendChild(indicator);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator');
+    if (indicator) {
+        indicator.remove();
+    }
+}
+
+function askQuestion(question) {
+    const input = document.getElementById('chat-input');
+    input.value = question;
+    document.getElementById('chat-form').dispatchEvent(new Event('submit'));
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Render existing markdown content
+document.addEventListener('DOMContentLoaded', function() {
+    const markdownElements = document.querySelectorAll('.markdown-content');
+    markdownElements.forEach(element => {
+        const content = element.textContent.trim();
+        element.innerHTML = md.render(content);
+    });
+});
+</script>
+{% endblock %} 

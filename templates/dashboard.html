@@ -1,0 +1,624 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - HealthAI{% endblock %}
+
+{% block extra_head %}
+<!-- Add Markdown-it for rendering markdown -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@12.0.4/dist/markdown-it.min.js"></script>
+<style>
+    body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+    }
+    
+    .gradient-card {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    
+    .stats-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+    }
+    
+    .progress-bar-bg {
+        background-color: rgba(226, 232, 240, 0.1);
+    }
+    
+    .progress-bar-fill {
+        background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    }
+    
+    .workout-item {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        transition: all 0.3s ease;
+    }
+    
+    .workout-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .meal-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        transition: all 0.3s ease;
+    }
+    
+    .meal-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .chat-container {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+    }
+    
+    .user-message {
+        background-color: #3b82f6;
+        color: white;
+    }
+    
+    .ai-message {
+        background-color: #334155;
+        color: #e2e8f0;
+    }
+    
+    .input-field {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        color: #e2e8f0;
+    }
+    
+    .input-field:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+    
+    .button-primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+        transition: all 0.3s ease;
+    }
+    
+    .button-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <!-- Health Stats Card -->
+    <div class="stats-card rounded-xl shadow-lg p-6 col-span-1">
+        <h2 class="text-xl font-semibold mb-4 text-blue-400">Health Stats</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">Weight</span>
+                <span class="font-medium text-gray-200">{{ user_profile.weight }} kg</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">Height</span>
+                <span class="font-medium text-gray-200">{{ user_profile.height }} cm</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">BMI</span>
+                <span class="font-medium text-gray-200">{{ user_profile.bmi }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">Body Type</span>
+                <span class="font-medium text-gray-200">{{ user_profile.body_type }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Goals Card -->
+    <div class="gradient-card rounded-xl shadow-lg p-6 text-white daily-goals-section">
+        <h2 class="text-xl font-semibold mb-4 text-blue-400">Daily Goals</h2>
+        <div class="space-y-4">
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span>Calories</span>
+                    <span>{{ daily_goals.calories_consumed }}/{{ daily_goals.calories_target }}</span>
+                </div>
+                <div class="h-2 progress-bar-bg rounded-full">
+                    <div class="h-full progress-bar-fill rounded-full" style="width: {{ daily_goals.calories_percentage }}%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span>Water</span>
+                    <span>{{ daily_goals.water_consumed }}/{{ daily_goals.water_target }} L</span>
+                </div>
+                <div class="h-2 progress-bar-bg rounded-full">
+                    <div class="h-full progress-bar-fill rounded-full" style="width: {{ daily_goals.water_percentage }}%"></div>
+                </div>
+                <form id="water-form" class="mt-2 flex gap-2" onsubmit="return false;">
+                    {% csrf_token %}
+                    <input type="number" name="water_amount" step="0.1" min="0" max="5" 
+                           class="input-field w-24 px-2 py-1 rounded" placeholder="0.0" required>
+                    <button type="submit" class="button-primary px-3 py-1 rounded">
+                        Add
+                    </button>
+                </form>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span>Protein</span>
+                    <span>{{ daily_goals.protein_consumed }}/{{ daily_goals.protein_target }} g</span>
+                </div>
+                <div class="h-2 progress-bar-bg rounded-full">
+                    <div class="h-full progress-bar-fill rounded-full" style="width: {{ daily_goals.protein_percentage }}%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span>Carbs</span>
+                    <span>{{ daily_goals.carbs_consumed }}/{{ daily_goals.carbs_target }} g</span>
+                </div>
+                <div class="h-2 progress-bar-bg rounded-full">
+                    <div class="h-full progress-bar-fill rounded-full" style="width: {{ daily_goals.carbs_percentage }}%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span>Fats</span>
+                    <span>{{ daily_goals.fats_consumed }}/{{ daily_goals.fats_target }} g</span>
+                </div>
+                <div class="h-2 progress-bar-bg rounded-full">
+                    <div class="h-full progress-bar-fill rounded-full" style="width: {{ daily_goals.fats_percentage }}%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workout Plan Card -->
+    <div class="stats-card rounded-xl shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 text-blue-400">Today's Workout</h2>
+        <div class="space-y-4">
+            {% for exercise in workout_plan %}
+            <div class="workout-item flex items-center justify-between p-3 rounded-lg">
+                <div>
+                    <h3 class="font-medium text-gray-200">{{ exercise.name }}</h3>
+                    <p class="text-sm text-gray-400">{{ exercise.sets }}x{{ exercise.reps }}{% if exercise.weight %} - {{ exercise.weight }}kg{% endif %}</p>
+                </div>
+                <div data-id="{{ exercise.id }}" class="workout-complete-btn w-6 h-6 rounded-full border-2 border-blue-500 flex items-center justify-center cursor-pointer hover:bg-blue-500 hover:text-white transition-colors {% if exercise.completed %}bg-blue-500 text-white{% endif %}">
+                    <span class="text-lg">✓</span>
+                </div>
+            </div>
+            {% empty %}
+            <div class="workout-item p-4 rounded-lg text-gray-400">
+                No workout scheduled for today. Ask your AI assistant to create a workout plan.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Meal Tracking Card -->
+    <div class="stats-card rounded-xl shadow-lg p-6 col-span-1 md:col-span-2">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-blue-400">Today's Meals</h2>
+            <button id="add-meal-btn" class="button-primary px-4 py-2 rounded-lg">
+                Add Meal
+            </button>
+        </div>
+        
+        <!-- Add Meal Form Modal -->
+        <div id="meal-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+            <div class="stats-card rounded-xl p-6 w-full max-w-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-blue-400">Add Meal</h3>
+                    <button id="close-meal-modal" class="text-gray-400 hover:text-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form id="add-meal-form">
+                    {% csrf_token %}
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Meal Name</label>
+                            <input type="text" name="name" class="input-field w-full px-4 py-2 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Meal Type</label>
+                            <select name="meal_type" class="input-field w-full px-4 py-2 rounded-lg" required>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Calories</label>
+                                <input type="number" name="calories" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Time</label>
+                                <input type="time" name="time" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Protein (g)</label>
+                                <input type="number" name="protein" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Carbs (g)</label>
+                                <input type="number" name="carbs" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Fats (g)</label>
+                                <input type="number" name="fats" class="input-field w-full px-4 py-2 rounded-lg" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Tags (comma separated)</label>
+                            <input type="text" name="tags" class="input-field w-full px-4 py-2 rounded-lg">
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button type="submit" class="button-primary w-full px-4 py-2 rounded-lg">
+                            Add Meal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for meal in meals %}
+            <div class="meal-card p-4 rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-medium text-gray-200">{{ meal.name }}</h3>
+                    <span class="text-sm text-gray-400">{{ meal.time }}</span>
+                </div>
+                <p class="text-sm text-gray-400">{{ meal.calories }} kcal</p>
+                <div class="mt-2 flex gap-2">
+                    {% for tag in meal.tags %}
+                    <span class="px-2 py-1 text-xs bg-blue-900 text-blue-200 rounded">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="meal-card p-4 rounded-lg col-span-3 text-center text-gray-400">
+                No meals added yet. Use the "Add Meal" button to track your meals.
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- AI Chat Card -->
+    <div class="stats-card rounded-xl shadow-lg p-6 col-span-1 lg:col-span-3">
+        <h2 class="text-xl font-semibold mb-4 text-blue-400">AI Health Assistant</h2>
+        <style>
+            .prose h1, .prose h2, .prose h3, .prose h4 {
+                color: #1a365d;
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+            }
+            .prose ul {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+            .prose li {
+                margin-bottom: 0.25em;
+            }
+            .prose strong {
+                color: #4f46e5;
+            }
+            .prose em {
+                color: #6b7280;
+            }
+            .markdown-content {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+        </style>
+        <div class="chat-container rounded-lg p-4 h-64 overflow-y-auto mb-4" id="chat-messages">
+            <!-- Welcome message -->
+            <div class="mb-4">
+                <div class="ai-message inline-block px-4 py-3 rounded-lg max-w-[80%]">
+                    <div class="prose prose-invert prose-sm">
+                        <h4 class="font-bold text-gray-200 mt-0 mb-1">Welcome to Your Health Assistant!</h4>
+                        <p class="m-0">I can help you with:</p>
+                        <ul class="list-disc ml-4 mt-1 mb-1">
+                            <li>Personalized workout recommendations</li>
+                            <li>Diet and nutrition advice</li>
+                            <li>Progress tracking insights</li>
+                            <li>General health questions</li>
+                        </ul>
+                        <p class="m-0">My responses will be organized into clear sections with actionable advice. How can I help you today?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="flex gap-4" id="chat-form">
+            <input type="text" 
+                   class="input-field flex-1 px-4 py-2 rounded-lg" 
+                   placeholder="Ask about your diet, workout, or health..."
+                   id="chat-input">
+            <button type="submit" 
+                    class="button-primary px-6 py-2 rounded-lg">
+                Send
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Initialize markdown-it
+const md = window.markdownit();
+
+// Modal functionality
+const mealModal = document.getElementById('meal-modal');
+const addMealBtn = document.getElementById('add-meal-btn');
+const closeMealModal = document.getElementById('close-meal-modal');
+
+addMealBtn.addEventListener('click', () => {
+    mealModal.classList.remove('hidden');
+});
+
+closeMealModal.addEventListener('click', () => {
+    mealModal.classList.add('hidden');
+});
+
+// Close modal when clicking outside of it
+mealModal.addEventListener('click', (e) => {
+    if (e.target === mealModal) {
+        mealModal.classList.add('hidden');
+    }
+});
+
+// Handle meal form submission
+document.getElementById('add-meal-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // Convert tags from comma-separated string to array
+    const tagsString = formData.get('tags');
+    if (tagsString) {
+        const tagsArray = tagsString.split(',').map(tag => tag.trim()).filter(Boolean);
+        formData.set('tags', JSON.stringify(tagsArray));
+    } else {
+        formData.set('tags', JSON.stringify([]));
+    }
+    
+    try {
+        const response = await fetch('/add_meal/', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        if (result.status === 'success') {
+            // Reload the page to show the new meal
+            window.location.reload();
+        } else {
+            alert('Error adding meal: ' + result.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to add meal. Please try again.');
+    }
+});
+
+// Handle workout completion checkmarks
+document.querySelectorAll('.workout-complete-btn').forEach(button => {
+    button.addEventListener('click', async () => {
+        const exerciseId = button.getAttribute('data-id');
+        
+        try {
+            const response = await fetch('/complete_exercise/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ exercise_id: exerciseId })
+            });
+            
+            const result = await response.json();
+            if (result.status === 'success') {
+                // Update the UI to show completed
+                button.classList.add('bg-blue-500', 'text-white');
+                button.classList.remove('border-blue-500');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+// Chat functionality
+document.getElementById('chat-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = document.getElementById('chat-input');
+    const message = input.value;
+    input.value = '';
+
+    // Add user message to chat
+    addMessage('user', message);
+
+    // Send to backend and get AI response
+    try {
+        const formData = new FormData();
+        formData.append('message', message);
+        formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+        
+        const response = await fetch('/api/chat/', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (data.status === 'success') {
+            addMessage('ai', data.response);
+        } else {
+            addMessage('ai', 'Error: ' + data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage('ai', 'Sorry, I encountered an error. Please try again.');
+    }
+});
+
+function addMessage(type, content) {
+    const messages = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `mb-4 ${type === 'user' ? 'text-right' : ''}`;
+    
+    const bubble = document.createElement('div');
+    bubble.className = type === 'user' 
+        ? 'inline-block bg-blue-600 text-white px-4 py-3 rounded-lg max-w-[80%]'
+        : 'inline-block bg-gray-200 text-gray-800 px-4 py-3 rounded-lg max-w-[80%]';
+    
+    if (type === 'ai') {
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'prose prose-invert prose-sm markdown-content';
+        contentDiv.innerHTML = md.render(content);
+        bubble.appendChild(contentDiv);
+    } else {
+        bubble.textContent = content;
+    }
+    
+    messageDiv.appendChild(bubble);
+    messages.appendChild(messageDiv);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+// Helper function to get CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Water form handling
+document.getElementById('water-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const waterAmount = parseFloat(form.water_amount.value);
+    
+    if (isNaN(waterAmount) || waterAmount <= 0) {
+        alert('Please enter a valid water amount');
+        return;
+    }
+    
+    try {
+        console.log('Sending water update request:', waterAmount);
+        const response = await fetch('/update-water/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ water_amount: waterAmount })
+        });
+        
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+            throw new TypeError("Received non-JSON response from server");
+        }
+        
+        const result = await response.json();
+        console.log('Response data:', result);
+        
+        if (result.status === 'success') {
+            // Find all elements that could be the water display
+            const allSpans = document.querySelectorAll('.daily-goals-section .flex.justify-between span');
+            
+            // If no elements found with the specific selector, try a more general selector but only within the main content
+            let waterDisplay = null;
+            let waterTarget = 3.0; // Default target
+            
+            // Find the water display span by looking for "L" text content
+            for (let i = 0; i < allSpans.length; i++) {
+                const span = allSpans[i];
+                if (span && span.textContent && span.textContent.includes('L') && !span.textContent.includes('Login')) {
+                    waterDisplay = span;
+                    
+                    // Try to extract the target value
+                    try {
+                        const parts = span.textContent.split('/');
+                        if (parts && parts.length > 1 && parts[1]) {
+                            // Find any number in the second part
+                            const matches = parts[1].match(/\d+(\.\d+)?/);
+                            if (matches && matches[0]) {
+                                waterTarget = parseFloat(matches[0]);
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Error parsing water target:', e);
+                    }
+                    break;
+                }
+            }
+            
+            // If we still don't have a water display, try a different, more specific approach
+            if (!waterDisplay) {
+                // Try to find it in the Daily Goals section
+                const waterSection = [...document.querySelectorAll('.space-y-4 > div')].find(div => {
+                    const spans = div.querySelectorAll('span');
+                    return Array.from(spans).some(span => span.textContent === 'Water');
+                });
+                
+                if (waterSection) {
+                    waterDisplay = waterSection.querySelector('.flex.justify-between span:last-child');
+                }
+            }
+            
+            // Update the display if we found it
+            if (waterDisplay) {
+                waterDisplay.textContent = `${result.new_total.toFixed(1)}/${waterTarget.toFixed(1)} L`;
+                
+                // Try to update the progress bar
+                try {
+                    const container = waterDisplay.closest('div');
+                    if (container && container.nextElementSibling) {
+                        const progressBar = container.nextElementSibling.querySelector('.progress-bar-fill');
+                        if (progressBar) {
+                            const percentage = Math.min((result.new_total / waterTarget) * 100, 100);
+                            progressBar.style.width = `${percentage}%`;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error updating progress bar:', e);
+                }
+            } else {
+                console.error('Water display element not found');
+            }
+            
+            // Clear the input field
+            form.water_amount.value = '';
+        } else {
+            console.error('Error response:', result);
+            alert(result.message || 'Failed to update water intake');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert(`An error occurred while updating water intake: ${error.message}`);
+    }
+});
+</script>
+{% endblock %} 

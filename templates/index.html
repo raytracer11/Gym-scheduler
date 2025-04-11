@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Diet Monitoring ChatBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 15px;
+        }
+
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: var(--secondary-color);
+            color: white;
+            margin-left: auto;
+        }
+
+        .bot-message {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .input-group {
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .form-control {
+            border: none;
+            padding: 12px 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            padding: 12px 25px;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .workout-form, .diet-form {
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-heartbeat me-2"></i>
+                Health & Diet Monitor
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Chat Section -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Chat with AI Assistant</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chat-container" id="chatContainer">
+                            <div class="message bot-message">
+                                Hello! I'm your health and fitness assistant. How can I help you today?
+                            </div>
+                        </div>
+                        <div class="input-group mt-3">
+                            <input type="text" class="form-control" id="userInput" placeholder="Type your message...">
+                            <button class="btn btn-primary" onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-tools me-2"></i>Features</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-outline-primary w-100 mb-3" onclick="toggleWorkoutForm()">
+                            <i class="fas fa-dumbbell me-2"></i>Generate Workout Plan
+                        </button>
+                        <button class="btn btn-outline-primary w-100" onclick="toggleDietForm()">
+                            <i class="fas fa-utensils me-2"></i>Track Diet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Workout Form -->
+                <div class="card workout-form" id="workoutForm">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-dumbbell me-2"></i>Workout Plan Generator</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Body Type</label>
+                            <select class="form-select" id="bodyType">
+                                <option value="ectomorph">Ectomorph</option>
+                                <option value="mesomorph">Mesomorph</option>
+                                <option value="endomorph">Endomorph</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" class="form-control" id="weight">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Health Conditions</label>
+                            <textarea class="form-control" id="healthConditions" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="generateWorkout()">
+                            Generate Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Diet Form -->
+                <div class="card diet-form" id="dietForm">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-utensils me-2"></i>Diet Tracker</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Today's Meals</label>
+                            <textarea class="form-control" id="meals" rows="4" placeholder="Enter your meals for today..."></textarea>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="trackDiet()">
+                            Analyze Diet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p class="mt-2">Processing your request...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleWorkoutForm() {
+            document.getElementById('workoutForm').style.display = 
+                document.getElementById('workoutForm').style.display === 'none' ? 'block' : 'none';
+            document.getElementById('dietForm').style.display = 'none';
+        }
+
+        function toggleDietForm() {
+            document.getElementById('dietForm').style.display = 
+                document.getElementById('dietForm').style.display === 'none' ? 'block' : 'none';
+            document.getElementById('workoutForm').style.display = 'none';
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function addMessage(message, isUser = false) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = message;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (!message) return;
+            
+            addMessage(message, true);
+            userInput.value = '';
+            showLoading();
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addMessage(data.response);
+                } else {
+                    addMessage('Sorry, I encountered an error. Please try again.');
+                    console.error('Error:', data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I encountered an error. Please try again.');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function generateWorkout() {
+            const bodyType = document.getElementById('bodyType').value;
+            const weight = document.getElementById('weight').value;
+            const healthConditions = document.getElementById('healthConditions').value;
+            
+            if (!bodyType || !weight) {
+                addMessage('Please provide both body type and weight.');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                const response = await fetch('/generate_workout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        body_type: bodyType,
+                        weight: weight,
+                        health_conditions: healthConditions
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addMessage('Here is your personalized workout plan:');
+                    addMessage(data.workout_plan);
+                } else {
+                    addMessage('Sorry, I encountered an error generating your workout plan. Please try again.');
+                    console.error('Error:', data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I encountered an error generating your workout plan. Please try again.');
+            } finally {
+                hideLoading();
+                toggleWorkoutForm();
+            }
+        }
+
+        async function trackDiet() {
+            const mealsText = document.getElementById('meals').value.trim();
+            
+            if (!mealsText) {
+                addMessage('Please enter your meals for analysis.');
+                return;
+            }
+            
+            const meals = mealsText.split('\n').filter(meal => meal.trim());
+            showLoading();
+            
+            try {
+                const response = await fetch('/track_diet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ meals: meals })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addMessage('Here is your diet analysis:');
+                    addMessage(data.diet_analysis);
+                } else {
+                    addMessage('Sorry, I encountered an error analyzing your diet. Please try again.');
+                    console.error('Error:', data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('Sorry, I encountered an error analyzing your diet. Please try again.');
+            } finally {
+                hideLoading();
+                toggleDietForm();
+            }
+        }
+
+        // Add event listener for Enter key in chat input
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

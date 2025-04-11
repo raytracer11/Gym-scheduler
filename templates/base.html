@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HealthAI{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind for dark mode
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <style>
+        :root {
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-border: #334155;
+            --dark-text: #e2e8f0;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --light-border: #e2e8f0;
+            --light-text: #0f172a;
+            --accent-blue: #3b82f6;
+            --accent-blue-light: #60a5fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        body:not(.dark) {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+        
+        .gradient-card {
+            transition: background 0.3s ease;
+        }
+        
+        .dark .gradient-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-border) 100%);
+        }
+        
+        body:not(.dark) .gradient-card {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: var(--light-text);
+        }
+        
+        .navbar {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .dark .navbar {
+            background-color: var(--dark-card);
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        body:not(.dark) .navbar {
+            background-color: var(--light-card);
+            border-bottom: 1px solid var(--light-border);
+        }
+        
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        
+        .dark .nav-link {
+            color: #94a3b8;
+        }
+        
+        body:not(.dark) .nav-link {
+            color: #64748b;
+        }
+        
+        .dark .nav-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        body:not(.dark) .nav-link:hover {
+            color: var(--accent-blue);
+        }
+        
+        .logo-text {
+            transition: background 0.3s ease;
+        }
+        
+        .dark .logo-text {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        body:not(.dark) .logo-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stats-card {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .dark .stats-card {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+        }
+        
+        body:not(.dark) .stats-card {
+            background-color: var(--light-card);
+            border: 1px solid var(--light-border);
+        }
+        
+        .dark .input-field {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+        }
+        
+        body:not(.dark) .input-field {
+            background-color: var(--light-card);
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+        }
+        
+        .dark .input-field:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        
+        body:not(.dark) .input-field:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        
+        .button-primary {
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .dark .button-primary {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+        }
+        
+        body:not(.dark) .button-primary {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        }
+        
+        .button-primary:hover {
+            transform: translateY(-1px);
+        }
+        
+        .dark .button-primary:hover {
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+        }
+        
+        body:not(.dark) .button-primary:hover {
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+        }
+        
+        .theme-toggle {
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(100, 116, 139, 0.1);
+        }
+        
+        /* Chat-specific styles */
+        .dark .chat-container {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+        }
+        
+        body:not(.dark) .chat-container {
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .dark .user-message {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+        
+        body:not(.dark) .user-message {
+            background-color: #4f46e5;
+            color: white;
+        }
+        
+        .dark .ai-message {
+            background-color: var(--dark-border);
+            color: var(--dark-text);
+        }
+        
+        body:not(.dark) .ai-message {
+            background-color: #e2e8f0;
+            color: var(--light-text);
+        }
+        
+        /* Progress bar styles */
+        .dark .progress-bar-bg {
+            background-color: rgba(226, 232, 240, 0.1);
+        }
+        
+        body:not(.dark) .progress-bar-bg {
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+        
+        .dark .progress-bar-fill {
+            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+        }
+        
+        body:not(.dark) .progress-bar-fill {
+            background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
+        }
+        
+        /* Workout item styles */
+        .dark .workout-item {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+        }
+        
+        body:not(.dark) .workout-item {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .workout-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        /* Meal card styles */
+        .dark .meal-card {
+            background-color: var(--dark-card);
+            border: 1px solid var(--dark-border);
+        }
+        
+        body:not(.dark) .meal-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        /* Text colors */
+        .dark .text-primary {
+            color: var(--dark-text);
+        }
+        
+        body:not(.dark) .text-primary {
+            color: var(--light-text);
+        }
+        
+        .dark .text-secondary {
+            color: #94a3b8;
+        }
+        
+        body:not(.dark) .text-secondary {
+            color: #64748b;
+        }
+        
+        .dark .text-accent {
+            color: var(--accent-blue-light);
+        }
+        
+        body:not(.dark) .text-accent {
+            color: #6366f1;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen dark">
+    <nav class="navbar shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold logo-text">HealthAI</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="nav-link text-lg font-medium hover:text-blue-400">Dashboard</a>
+                    <a href="{% url 'profile' %}" class="nav-link text-lg font-medium hover:text-blue-400">Profile</a>
+                    <a href="{% url 'chat' %}" class="nav-link text-lg font-medium hover:text-blue-400">AI Chat</a>
+                    
+                    <!-- Theme toggle buttons -->
+                    <div class="flex items-center space-x-2 ml-4">
+                        <button id="light-mode" class="theme-toggle" title="Switch to light mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button id="dark-mode" class="theme-toggle" title="Switch to dark mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Logout button -->
+                    <div class="ml-4">
+                        <form action="{% url 'logout' %}" method="POST" class="m-0 p-0">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-all" title="Logout">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-1 1h-1a1 1 0 01-1-1V4a1 1 0 00-1-1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1v-1a1 1 0 011-1h1a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" />
+                                    <path d="M16.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L13.586 12H7a1 1 0 110-2h6.586l-2.293-2.293a1 1 0 111.414-1.414l4 4z" />
+                                </svg>
+                                <span>Logout</span>
+                            </button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <!-- Theme toggle buttons for non-authenticated users -->
+                    <div class="flex items-center space-x-2">
+                        <button id="light-mode" class="theme-toggle" title="Switch to light mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button id="dark-mode" class="theme-toggle" title="Switch to dark mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Login button -->
+                    <div class="ml-4">
+                        <a href="{% url 'login' %}" class="nav-link flex items-center space-x-1 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-1 1h-1a1 1 0 01-1-1V4a1 1 0 00-1-1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1v-1a1 1 0 011-1h1a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" />
+                                <path d="M10 12H7a1 1 0 110-2h3v-3a1 1 0 112 0v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3z" />
+                            </svg>
+                            <span>Login</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block extra_scripts %}{% endblock %}
+    
+    <script>
+        // Theme switcher functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeBtn = document.getElementById('dark-mode');
+            const lightModeBtn = document.getElementById('light-mode');
+            const htmlElement = document.documentElement;
+            const bodyElement = document.body;
+            
+            // Check for saved theme preference or use browser preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                htmlElement.classList.remove('dark');
+                bodyElement.classList.remove('dark');
+            } else if (savedTheme === 'dark') {
+                htmlElement.classList.add('dark');
+                bodyElement.classList.add('dark');
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.classList.add('dark');
+                bodyElement.classList.add('dark');
+            }
+            
+            // Switch to dark mode
+            darkModeBtn.addEventListener('click', function() {
+                htmlElement.classList.add('dark');
+                bodyElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            });
+            
+            // Switch to light mode
+            lightModeBtn.addEventListener('click', function() {
+                htmlElement.classList.remove('dark');
+                bodyElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            });
+        });
+    </script>
+</body>
+</html> 

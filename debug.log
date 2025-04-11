@@ -1,0 +1,378 @@
+ERROR 2025-04-01 14:47:05,266 views 13188 12384 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+ERROR 2025-04-01 14:47:12,862 views 13188 12384 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 14:50:07,061 views 12532 13772 Received workout request - Body Type: ectomorph, Weight: 85, Health Conditions: none
+INFO 2025-04-01 14:50:07,061 views 12532 13772 Sending request to Groq API for workout plan
+ERROR 2025-04-01 14:50:08,802 views 12532 13772 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 15:03:28,056 views 14756 9388 Received chat message: hello
+INFO 2025-04-01 15:03:28,057 views 14756 9388 Sending request to Groq API
+ERROR 2025-04-01 15:03:28,842 views 14756 9388 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 15:03:43,799 views 14756 9388 Received chat message: workout plan
+INFO 2025-04-01 15:03:43,800 views 14756 9388 Sending request to Groq API
+ERROR 2025-04-01 15:03:44,443 views 14756 9388 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 15:04:03,800 views 14756 9388 Received workout request - Body Type: endomorph, Weight: 85, Health Conditions: 
+INFO 2025-04-01 15:04:03,811 views 14756 9388 Sending request to Groq API for workout plan
+ERROR 2025-04-01 15:04:04,482 views 14756 9388 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 15:04:32,801 views 14756 9388 Received diet tracking request with 1 meals
+INFO 2025-04-01 15:04:32,801 views 14756 9388 Sending request to Groq API for diet analysis
+ERROR 2025-04-01 15:04:33,334 views 14756 9388 API request failed: 404 Client Error: Not Found for url: https://api.groq.com/v1/chat/completions
+INFO 2025-04-01 15:10:25,164 views 15252 10428 Received workout request - Body Type: endomorph, Weight: 90, Health Conditions: 
+INFO 2025-04-01 15:10:25,165 views 15252 10428 Sending request to Groq API for workout plan
+ERROR 2025-04-01 15:10:25,912 views 15252 10428 API request failed: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+INFO 2025-04-01 15:10:34,484 views 15252 10428 Received chat message: hello
+INFO 2025-04-01 15:10:34,485 views 15252 10428 Sending request to Groq API
+ERROR 2025-04-01 15:10:35,071 views 15252 10428 API request failed: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+INFO 2025-04-01 15:10:55,515 views 15252 10428 Received diet tracking request with 1 meals
+INFO 2025-04-01 15:10:55,516 views 15252 10428 Sending request to Groq API for diet analysis
+ERROR 2025-04-01 15:10:56,208 views 15252 10428 API request failed: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+INFO 2025-04-01 15:14:32,651 views 10040 15220 Received workout request - Body Type: endomorph, Weight: 90, Health Conditions: 
+INFO 2025-04-01 15:14:32,672 views 10040 15220 Sending request to Groq API for workout plan
+ERROR 2025-04-01 15:14:33,822 views 10040 15220 API request failed with status 400: {"error":{"message":"The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+
+INFO 2025-04-01 15:14:46,527 views 10040 15220 Received chat message: hello
+INFO 2025-04-01 15:14:46,536 views 10040 15220 Sending request to Groq API
+ERROR 2025-04-01 15:14:47,056 views 10040 15220 API request failed with status 400: {"error":{"message":"The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+
+INFO 2025-04-01 15:15:04,121 views 10040 15220 Received diet tracking request with 1 meals
+INFO 2025-04-01 15:15:04,122 views 10040 15220 Sending request to Groq API for diet analysis
+ERROR 2025-04-01 15:15:04,665 views 10040 15220 API request failed with status 400: {"error":{"message":"The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+
+INFO 2025-04-01 15:19:55,852 views 16176 12124 Received workout request - Body Type: endomorph, Weight: 85, Health Conditions: 
+INFO 2025-04-01 15:19:55,853 views 16176 12124 Sending request to Groq API for workout plan
+ERROR 2025-04-01 15:19:56,348 views 16176 12124 API request failed with status 404: {"error":{"message":"The model `mixtral-8x7b` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+INFO 2025-04-01 15:24:43,856 views 16176 12124 Received workout request - Body Type: endomorph, Weight: 85, Health Conditions: 
+INFO 2025-04-01 15:24:43,857 views 16176 12124 Sending request to Groq API for workout plan
+ERROR 2025-04-01 15:24:44,524 views 16176 12124 API request failed with status 404: {"error":{"message":"The model `mixtral-8x7b` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+INFO 2025-04-01 15:24:54,006 views 16176 12124 Received chat message: h6ello
+INFO 2025-04-01 15:24:54,007 views 16176 12124 Sending request to Groq API
+ERROR 2025-04-01 15:24:54,555 views 16176 12124 API request failed with status 404: {"error":{"message":"The model `mixtral-8x7b` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+INFO 2025-04-01 15:27:29,894 views 3720 9884 Received workout request - Body Type: endomorph, Weight: 90, Health Conditions: 
+INFO 2025-04-01 15:27:29,895 views 3720 9884 Sending request to OpenAI API for workout plan
+ERROR 2025-04-01 15:27:30,913 views 3720 9884 API request failed with status 404: {
+    "error": {
+        "message": "The model `gpt-4-turbo-preview` does not exist or you do not have access to it.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "model_not_found"
+    }
+}
+
+INFO 2025-04-01 15:30:31,666 views 3524 13920 Received chat message: h6ello
+INFO 2025-04-01 15:30:31,672 views 3524 13920 Sending request to OpenAI API
+ERROR 2025-04-01 15:30:32,488 views 3524 13920 API request failed with status 404: {
+    "error": {
+        "message": "The model `gpt-4` does not exist or you do not have access to it.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "model_not_found"
+    }
+}
+
+INFO 2025-04-01 15:33:35,270 views 13520 10396 Received chat message: hello
+INFO 2025-04-01 15:33:35,273 views 13520 10396 Sending request to OpenAI API
+ERROR 2025-04-01 15:33:38,936 views 13520 10396 API request failed with status 401: {
+    "error": {
+        "message": "Incorrect API key provided: sk-Hs0Hs******************************0Hs0. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+    }
+}
+
+ERROR 2025-04-02 13:50:49,983 views 8688 10344 Error in chat endpoint: Client.__init__() got an unexpected keyword argument 'proxies'
+ERROR 2025-04-02 13:51:15,040 views 8688 10344 Error in chat endpoint: Client.__init__() got an unexpected keyword argument 'proxies'
+ERROR 2025-04-02 13:51:42,792 views 8688 10344 Error in chat endpoint: Client.__init__() got an unexpected keyword argument 'proxies'
+INFO 2025-04-07 23:00:33,037 views 22380 21972 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:00:33,037 views 22380 21972 Fitness goal: maintenance
+INFO 2025-04-07 23:00:33,037 views 22380 21972 Activity level: active (multiplier: 1.15)
+INFO 2025-04-07 23:00:33,037 views 22380 21972 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.2, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:00:33,037 views 22380 21972 Weight: 85.0kg (multiplier: 1.2)
+INFO 2025-04-07 23:00:33,054 views 22380 21972 Created 7 exercises:
+INFO 2025-04-07 23:00:33,054 views 22380 21972 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 3, 'reps': 45, 'duration': 7}
+INFO 2025-04-07 23:00:33,054 views 22380 21972 - Jogging: {'name': 'Jogging', 'sets': 1, 'reps': 1, 'duration': 30}
+INFO 2025-04-07 23:00:33,054 views 22380 21972 - Mountain Climbers: {'name': 'Mountain Climbers', 'sets': 3, 'reps': 30, 'duration': 7}
+INFO 2025-04-07 23:00:33,054 views 22380 21972 - Push-ups: {'name': 'Push-ups', 'sets': 3, 'reps': 22}
+INFO 2025-04-07 23:00:33,061 views 22380 21972 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 3, 'reps': 22}
+INFO 2025-04-07 23:00:33,062 views 22380 21972 - Plank: {'name': 'Plank', 'sets': 3, 'reps': 1, 'duration': 45}
+INFO 2025-04-07 23:00:33,062 views 22380 21972 - Lunges: {'name': 'Lunges', 'sets': 3, 'reps': 15}
+INFO 2025-04-07 23:00:59,835 views 22380 21972 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:00:59,836 views 22380 21972 Fitness goal: muscle_gain
+INFO 2025-04-07 23:00:59,836 views 22380 21972 Activity level: active (multiplier: 1.15)
+INFO 2025-04-07 23:00:59,836 views 22380 21972 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.2, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:00:59,836 views 22380 21972 Weight: 85.0kg (multiplier: 1.2)
+INFO 2025-04-07 23:00:59,852 views 22380 21972 Created 10 exercises:
+INFO 2025-04-07 23:00:59,852 views 22380 21972 - Push-ups: {'name': 'Push-ups', 'sets': 6, 'reps': 18}
+INFO 2025-04-07 23:00:59,852 views 22380 21972 - Pull-ups: {'name': 'Pull-ups', 'sets': 6, 'reps': 12}
+INFO 2025-04-07 23:00:59,852 views 22380 21972 - Dumbbell Rows: {'name': 'Dumbbell Rows', 'sets': 4, 'reps': 18, 'weight': 24}
+INFO 2025-04-07 23:00:59,859 views 22380 21972 - Dumbbell Shoulder Press: {'name': 'Dumbbell Shoulder Press', 'sets': 4, 'reps': 15, 'weight': 16}
+INFO 2025-04-07 23:00:59,859 views 22380 21972 - Bicep Curls: {'name': 'Bicep Curls', 'sets': 4, 'reps': 18, 'weight': 13}
+INFO 2025-04-07 23:00:59,859 views 22380 21972 - Squats: {'name': 'Squats', 'sets': 6, 'reps': 22, 'weight': 33}
+INFO 2025-04-07 23:00:59,859 views 22380 21972 - Lunges: {'name': 'Lunges', 'sets': 4, 'reps': 15, 'weight': 16}
+INFO 2025-04-07 23:00:59,859 views 22380 21972 - Calf Raises: {'name': 'Calf Raises', 'sets': 4, 'reps': 30, 'weight': 24}
+INFO 2025-04-07 23:00:59,867 views 22380 21972 - Glute Bridges: {'name': 'Glute Bridges', 'sets': 4, 'reps': 22, 'weight': 33}
+INFO 2025-04-07 23:00:59,869 views 22380 21972 - Step-ups: {'name': 'Step-ups', 'sets': 4, 'reps': 18, 'weight': 16}
+INFO 2025-04-07 23:01:13,464 views 22380 21972 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:01:13,464 views 22380 21972 Fitness goal: muscle_gain
+INFO 2025-04-07 23:01:13,472 views 22380 21972 Activity level: light (multiplier: 0.85)
+INFO 2025-04-07 23:01:13,472 views 22380 21972 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.2, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:01:13,472 views 22380 21972 Weight: 85.0kg (multiplier: 1.2)
+INFO 2025-04-07 23:01:13,481 views 22380 21972 Created 10 exercises:
+INFO 2025-04-07 23:01:13,488 views 22380 21972 - Push-ups: {'name': 'Push-ups', 'sets': 4, 'reps': 13}
+INFO 2025-04-07 23:01:13,488 views 22380 21972 - Pull-ups: {'name': 'Pull-ups', 'sets': 4, 'reps': 8}
+INFO 2025-04-07 23:01:13,488 views 22380 21972 - Dumbbell Rows: {'name': 'Dumbbell Rows', 'sets': 3, 'reps': 13, 'weight': 18}
+INFO 2025-04-07 23:01:13,488 views 22380 21972 - Dumbbell Shoulder Press: {'name': 'Dumbbell Shoulder Press', 'sets': 3, 'reps': 11, 'weight': 12}
+INFO 2025-04-07 23:01:13,488 views 22380 21972 - Bicep Curls: {'name': 'Bicep Curls', 'sets': 3, 'reps': 13, 'weight': 9}
+INFO 2025-04-07 23:01:13,496 views 22380 21972 - Squats: {'name': 'Squats', 'sets': 4, 'reps': 16, 'weight': 24}
+INFO 2025-04-07 23:01:13,496 views 22380 21972 - Lunges: {'name': 'Lunges', 'sets': 3, 'reps': 11, 'weight': 12}
+INFO 2025-04-07 23:01:13,496 views 22380 21972 - Calf Raises: {'name': 'Calf Raises', 'sets': 3, 'reps': 22, 'weight': 18}
+INFO 2025-04-07 23:01:13,496 views 22380 21972 - Glute Bridges: {'name': 'Glute Bridges', 'sets': 3, 'reps': 16, 'weight': 24}
+INFO 2025-04-07 23:01:13,496 views 22380 21972 - Step-ups: {'name': 'Step-ups', 'sets': 3, 'reps': 13, 'weight': 12}
+INFO 2025-04-07 23:02:04,758 views 22380 21972 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:02:04,758 views 22380 21972 Fitness goal: weight_loss
+INFO 2025-04-07 23:02:04,766 views 22380 21972 Activity level: sedentary (multiplier: 0.7)
+INFO 2025-04-07 23:02:04,766 views 22380 21972 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.2, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:02:04,766 views 22380 21972 Weight: 85.0kg (multiplier: 1.2)
+INFO 2025-04-07 23:02:04,799 views 22380 21972 Created 10 exercises:
+INFO 2025-04-07 23:02:04,803 views 22380 21972 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 27, 'duration': 9}
+INFO 2025-04-07 23:02:04,803 views 22380 21972 - Mountain Climbers: {'name': 'Mountain Climbers', 'sets': 2, 'reps': 18, 'duration': 4}
+INFO 2025-04-07 23:02:04,808 views 22380 21972 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 27, 'duration': 4}
+INFO 2025-04-07 23:02:04,810 views 22380 21972 - Burpees: {'name': 'Burpees', 'sets': 2, 'reps': 13}
+INFO 2025-04-07 23:02:04,810 views 22380 21972 - Jump Rope: {'name': 'Jump Rope', 'sets': 2, 'reps': 1, 'duration': 4}
+INFO 2025-04-07 23:02:04,810 views 22380 21972 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 13}
+INFO 2025-04-07 23:02:04,810 views 22380 21972 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 18}
+INFO 2025-04-07 23:02:04,818 views 22380 21972 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 9}
+INFO 2025-04-07 23:02:04,819 views 22380 21972 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 27}
+INFO 2025-04-07 23:02:04,824 views 22380 21972 - Russian Twists: {'name': 'Russian Twists', 'sets': 2, 'reps': 18}
+INFO 2025-04-07 23:09:07,319 views 21052 9792 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:09:07,319 views 21052 9792 Fitness goal: weight_loss
+INFO 2025-04-07 23:09:07,319 views 21052 9792 Activity level: light (multiplier: 0.9)
+INFO 2025-04-07 23:09:07,319 views 21052 9792 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:09:07,319 views 21052 9792 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:09:07,334 views 21052 9792 Created 9 exercises:
+INFO 2025-04-07 23:09:07,334 views 21052 9792 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-07 23:09:07,334 views 21052 9792 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-07 23:09:07,334 views 21052 9792 - Jump Rope: {'name': 'Jump Rope', 'sets': 2, 'reps': 1, 'duration': 3}
+INFO 2025-04-07 23:09:07,334 views 21052 9792 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 2, 'reps': 1, 'duration': 5}
+INFO 2025-04-07 23:09:07,342 views 21052 9792 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 10}
+INFO 2025-04-07 23:09:07,342 views 21052 9792 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 16}
+INFO 2025-04-07 23:09:07,342 views 21052 9792 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8}
+INFO 2025-04-07 23:09:07,342 views 21052 9792 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 21}
+INFO 2025-04-07 23:09:07,350 views 21052 9792 - Russian Twists: {'name': 'Russian Twists', 'sets': 2, 'reps': 16}
+INFO 2025-04-07 23:09:31,393 views 21052 9792 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:09:31,393 views 21052 9792 Fitness goal: weight_loss
+INFO 2025-04-07 23:09:31,393 views 21052 9792 Activity level: very_active (multiplier: 1.2)
+INFO 2025-04-07 23:09:31,398 views 21052 9792 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:09:31,399 views 21052 9792 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:09:31,409 views 21052 9792 Created 9 exercises:
+INFO 2025-04-07 23:09:31,409 views 21052 9792 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 29, 'duration': 7}
+INFO 2025-04-07 23:09:31,409 views 21052 9792 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 29, 'duration': 7}
+INFO 2025-04-07 23:09:31,409 views 21052 9792 - Jump Rope: {'name': 'Jump Rope', 'sets': 2, 'reps': 1, 'duration': 4}
+INFO 2025-04-07 23:09:31,409 views 21052 9792 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 2, 'reps': 1, 'duration': 7}
+INFO 2025-04-07 23:09:31,409 views 21052 9792 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 14}
+INFO 2025-04-07 23:09:31,415 views 21052 9792 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 21}
+INFO 2025-04-07 23:09:31,416 views 21052 9792 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 11}
+INFO 2025-04-07 23:09:31,418 views 21052 9792 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 29}
+INFO 2025-04-07 23:09:31,418 views 21052 9792 - Russian Twists: {'name': 'Russian Twists', 'sets': 2, 'reps': 21}
+INFO 2025-04-07 23:09:45,483 views 21052 9792 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:09:45,483 views 21052 9792 Fitness goal: maintenance
+INFO 2025-04-07 23:09:45,483 views 21052 9792 Activity level: very_active (multiplier: 1.2)
+INFO 2025-04-07 23:09:45,483 views 21052 9792 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:09:45,483 views 21052 9792 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:09:45,501 views 21052 9792 Created 7 exercises:
+INFO 2025-04-07 23:09:45,501 views 21052 9792 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 21, 'duration': 4}
+INFO 2025-04-07 23:09:45,501 views 21052 9792 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 1, 'reps': 1, 'duration': 14}
+INFO 2025-04-07 23:09:45,508 views 21052 9792 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 21, 'duration': 4}
+INFO 2025-04-07 23:09:45,508 views 21052 9792 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 14}
+INFO 2025-04-07 23:09:45,508 views 21052 9792 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 17}
+INFO 2025-04-07 23:09:45,508 views 21052 9792 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 29}
+INFO 2025-04-07 23:09:45,508 views 21052 9792 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 11}
+INFO 2025-04-07 23:09:53,379 views 21052 9792 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:09:53,379 views 21052 9792 Fitness goal: maintenance
+INFO 2025-04-07 23:09:53,379 views 21052 9792 Activity level: very_active (multiplier: 1.2)
+INFO 2025-04-07 23:09:53,386 views 21052 9792 Body type: mesomorph (adjustments: {'sets_multiplier': 1.0, 'reps_multiplier': 1.0, 'weight_multiplier': 1.0, 'duration_multiplier': 1.0})
+INFO 2025-04-07 23:09:53,386 views 21052 9792 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:09:53,394 views 21052 9792 Created 7 exercises:
+INFO 2025-04-07 23:09:53,401 views 21052 9792 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 19, 'duration': 3}
+INFO 2025-04-07 23:09:53,403 views 21052 9792 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 1, 'reps': 1, 'duration': 13}
+INFO 2025-04-07 23:09:53,404 views 21052 9792 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 19, 'duration': 3}
+INFO 2025-04-07 23:09:53,404 views 21052 9792 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 13}
+INFO 2025-04-07 23:09:53,404 views 21052 9792 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 15}
+INFO 2025-04-07 23:09:53,404 views 21052 9792 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 26}
+INFO 2025-04-07 23:09:53,404 views 21052 9792 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 10}
+INFO 2025-04-07 23:10:15,506 views 21052 9792 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:10:15,506 views 21052 9792 Fitness goal: maintenance
+INFO 2025-04-07 23:10:15,506 views 21052 9792 Activity level: moderate (multiplier: 1.0)
+INFO 2025-04-07 23:10:15,514 views 21052 9792 Body type: mesomorph (adjustments: {'sets_multiplier': 1.0, 'reps_multiplier': 1.0, 'weight_multiplier': 1.0, 'duration_multiplier': 1.0})
+INFO 2025-04-07 23:10:15,515 views 21052 9792 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:10:15,522 views 21052 9792 Created 7 exercises:
+INFO 2025-04-07 23:10:15,522 views 21052 9792 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 16, 'duration': 3}
+INFO 2025-04-07 23:10:15,522 views 21052 9792 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 1, 'reps': 1, 'duration': 11}
+INFO 2025-04-07 23:10:15,530 views 21052 9792 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 16, 'duration': 3}
+INFO 2025-04-07 23:10:15,530 views 21052 9792 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 11}
+INFO 2025-04-07 23:10:15,530 views 21052 9792 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 13}
+INFO 2025-04-07 23:10:15,530 views 21052 9792 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 22}
+INFO 2025-04-07 23:10:15,530 views 21052 9792 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8}
+INFO 2025-04-07 23:30:55,986 views 18304 22472 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-07 23:30:56,029 views 18304 22472 Successfully updated water intake for user rayyan2005: 0.5L
+INFO 2025-04-07 23:31:01,733 views 18304 22472 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-07 23:31:01,776 views 18304 22472 Successfully updated water intake for user rayyan2005: 0.5L
+INFO 2025-04-07 23:31:14,943 views 18304 22472 Received water update request: b'{"water_amount":1.2}'
+INFO 2025-04-07 23:31:14,990 views 18304 22472 Successfully updated water intake for user rayyan2005: 1.2L
+INFO 2025-04-07 23:39:18,196 views 3676 23504 Creating workout for user rayyan2005 with:
+INFO 2025-04-07 23:39:18,202 views 3676 23504 Fitness goal: weight_loss
+INFO 2025-04-07 23:39:18,202 views 3676 23504 Activity level: light (multiplier: 0.9)
+INFO 2025-04-07 23:39:18,202 views 3676 23504 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-07 23:39:18,202 views 3676 23504 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-07 23:39:18,218 views 3676 23504 Created 9 exercises:
+INFO 2025-04-07 23:39:18,218 views 3676 23504 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-07 23:39:18,218 views 3676 23504 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-07 23:39:18,226 views 3676 23504 - Jump Rope: {'name': 'Jump Rope', 'sets': 2, 'reps': 1, 'duration': 3}
+INFO 2025-04-07 23:39:18,226 views 3676 23504 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 2, 'reps': 1, 'duration': 5}
+INFO 2025-04-07 23:39:18,227 views 3676 23504 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 10}
+INFO 2025-04-07 23:39:18,227 views 3676 23504 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 16}
+INFO 2025-04-07 23:39:18,227 views 3676 23504 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8}
+INFO 2025-04-07 23:39:18,227 views 3676 23504 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 21}
+INFO 2025-04-07 23:39:18,227 views 3676 23504 - Russian Twists: {'name': 'Russian Twists', 'sets': 2, 'reps': 16}
+INFO 2025-04-08 00:14:56,656 views 3676 13348 Creating workout for user rayyan2005 with:
+INFO 2025-04-08 00:14:56,662 views 3676 13348 Fitness goal: weight_loss
+INFO 2025-04-08 00:14:56,664 views 3676 13348 Activity level: light (multiplier: 0.9)
+INFO 2025-04-08 00:14:56,664 views 3676 13348 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-08 00:14:56,664 views 3676 13348 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-08 00:14:56,664 views 3676 13348 Created 9 exercises:
+INFO 2025-04-08 00:14:56,664 views 3676 13348 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-08 00:14:56,671 views 3676 13348 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 21, 'duration': 5}
+INFO 2025-04-08 00:14:56,671 views 3676 13348 - Jump Rope: {'name': 'Jump Rope', 'sets': 2, 'reps': 1, 'duration': 3}
+INFO 2025-04-08 00:14:56,673 views 3676 13348 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 2, 'reps': 1, 'duration': 5}
+INFO 2025-04-08 00:14:56,673 views 3676 13348 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 10}
+INFO 2025-04-08 00:14:56,673 views 3676 13348 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 16}
+INFO 2025-04-08 00:14:56,673 views 3676 13348 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8}
+INFO 2025-04-08 00:14:56,673 views 3676 13348 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 21}
+INFO 2025-04-08 00:14:56,676 views 3676 13348 - Russian Twists: {'name': 'Russian Twists', 'sets': 2, 'reps': 16}
+INFO 2025-04-08 00:23:46,759 views 3676 16904 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 00:23:46,783 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.0L
+INFO 2025-04-08 00:23:52,868 views 3676 16904 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 00:23:52,917 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.0L
+INFO 2025-04-08 00:23:58,343 views 3676 16904 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 00:23:58,391 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.0L
+INFO 2025-04-08 00:24:17,665 views 3676 16904 Creating workout for user rayyan2005 with:
+INFO 2025-04-08 00:24:17,665 views 3676 16904 Fitness goal: maintenance
+INFO 2025-04-08 00:24:17,668 views 3676 16904 Activity level: moderate (multiplier: 1.0)
+INFO 2025-04-08 00:24:17,668 views 3676 16904 Body type: mesomorph (adjustments: {'sets_multiplier': 1.0, 'reps_multiplier': 1.0, 'weight_multiplier': 1.0, 'duration_multiplier': 1.0})
+INFO 2025-04-08 00:24:17,671 views 3676 16904 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-08 00:24:17,679 views 3676 16904 Created 7 exercises:
+INFO 2025-04-08 00:24:17,679 views 3676 16904 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 16, 'duration': 3}
+INFO 2025-04-08 00:24:17,679 views 3676 16904 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 1, 'reps': 1, 'duration': 11}
+INFO 2025-04-08 00:24:17,685 views 3676 16904 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 16, 'duration': 3}
+INFO 2025-04-08 00:24:17,687 views 3676 16904 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 11}
+INFO 2025-04-08 00:24:17,687 views 3676 16904 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 13}
+INFO 2025-04-08 00:24:17,687 views 3676 16904 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 22}
+INFO 2025-04-08 00:24:17,687 views 3676 16904 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8}
+INFO 2025-04-08 00:24:32,430 views 3676 16904 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 00:24:32,479 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.0L
+INFO 2025-04-08 00:24:36,484 views 3676 16904 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 00:24:36,524 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.0L
+INFO 2025-04-08 00:24:43,936 views 3676 16904 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 00:24:43,956 views 3676 16904 Successfully updated water intake for user rayyan2005: 0.5L
+INFO 2025-04-08 00:25:05,754 views 3676 16904 Creating workout for user rayyan2005 with:
+INFO 2025-04-08 00:25:05,754 views 3676 16904 Fitness goal: maintenance
+INFO 2025-04-08 00:25:05,754 views 3676 16904 Activity level: very_active (multiplier: 1.2)
+INFO 2025-04-08 00:25:05,761 views 3676 16904 Body type: mesomorph (adjustments: {'sets_multiplier': 1.0, 'reps_multiplier': 1.0, 'weight_multiplier': 1.0, 'duration_multiplier': 1.0})
+INFO 2025-04-08 00:25:05,761 views 3676 16904 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-08 00:25:05,769 views 3676 16904 Created 7 exercises:
+INFO 2025-04-08 00:25:05,769 views 3676 16904 - Jumping Jacks: {'name': 'Jumping Jacks', 'sets': 2, 'reps': 19, 'duration': 3}
+INFO 2025-04-08 00:25:05,769 views 3676 16904 - Jogging in Place: {'name': 'Jogging in Place', 'sets': 1, 'reps': 1, 'duration': 13}
+INFO 2025-04-08 00:25:05,777 views 3676 16904 - High Knees: {'name': 'High Knees', 'sets': 2, 'reps': 19, 'duration': 3}
+INFO 2025-04-08 00:25:05,777 views 3676 16904 - Push-ups: {'name': 'Push-ups', 'sets': 2, 'reps': 13}
+INFO 2025-04-08 00:25:05,777 views 3676 16904 - Bodyweight Squats: {'name': 'Bodyweight Squats', 'sets': 2, 'reps': 15}
+INFO 2025-04-08 00:25:05,777 views 3676 16904 - Plank: {'name': 'Plank', 'sets': 2, 'reps': 1, 'duration': 26}
+INFO 2025-04-08 00:25:05,777 views 3676 16904 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 10}
+INFO 2025-04-08 00:25:17,870 views 3676 16904 Creating workout for user rayyan2005 with:
+INFO 2025-04-08 00:25:17,870 views 3676 16904 Fitness goal: muscle_gain
+INFO 2025-04-08 00:25:17,878 views 3676 16904 Activity level: light (multiplier: 0.9)
+INFO 2025-04-08 00:25:17,878 views 3676 16904 Body type: endomorph (adjustments: {'sets_multiplier': 1.1, 'reps_multiplier': 1.1, 'weight_multiplier': 1.1, 'duration_multiplier': 1.1})
+INFO 2025-04-08 00:25:17,881 views 3676 16904 Weight: 85.0kg (multiplier: 1.1)
+INFO 2025-04-08 00:25:17,887 views 3676 16904 Created 8 exercises:
+INFO 2025-04-08 00:25:17,887 views 3676 16904 - Push-ups: {'name': 'Push-ups', 'sets': 3, 'reps': 10}
+INFO 2025-04-08 00:25:17,893 views 3676 16904 - Dumbbell Rows: {'name': 'Dumbbell Rows', 'sets': 3, 'reps': 10, 'weight': 10}
+INFO 2025-04-08 00:25:17,895 views 3676 16904 - Dumbbell Shoulder Press: {'name': 'Dumbbell Shoulder Press', 'sets': 3, 'reps': 8, 'weight': 8}
+INFO 2025-04-08 00:25:17,895 views 3676 16904 - Bicep Curls: {'name': 'Bicep Curls', 'sets': 3, 'reps': 10, 'weight': 5}
+INFO 2025-04-08 00:25:17,895 views 3676 16904 - Squats: {'name': 'Squats', 'sets': 3, 'reps': 13, 'weight': 16}
+INFO 2025-04-08 00:25:17,895 views 3676 16904 - Lunges: {'name': 'Lunges', 'sets': 2, 'reps': 8, 'weight': 8}
+INFO 2025-04-08 00:25:17,899 views 3676 16904 - Calf Raises: {'name': 'Calf Raises', 'sets': 2, 'reps': 16, 'weight': 10}
+INFO 2025-04-08 00:25:17,899 views 3676 16904 - Glute Bridges: {'name': 'Glute Bridges', 'sets': 2, 'reps': 13, 'weight': 16}
+INFO 2025-04-08 00:25:41,171 views 3676 16904 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 00:25:41,191 views 3676 16904 Successfully updated water intake for user rayyan2005: 0.5L
+INFO 2025-04-08 00:25:48,033 views 3676 16904 Received water update request: b'{"water_amount":0.2}'
+INFO 2025-04-08 00:25:48,041 views 3676 16904 Successfully updated water intake for user rayyan2005: 0.2L
+INFO 2025-04-08 00:25:52,505 views 3676 16904 Received water update request: b'{"water_amount":1.9}'
+INFO 2025-04-08 00:25:52,553 views 3676 16904 Successfully updated water intake for user rayyan2005: 1.9L
+INFO 2025-04-08 00:32:32,959 views 16332 16664 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 00:32:33,009 views 16332 16664 Successfully updated water intake for user rayyan2005: 0.5L, total: 8.6L
+INFO 2025-04-08 00:32:45,940 views 16332 16664 Received water update request: b'{"water_amount":1.4}'
+INFO 2025-04-08 00:32:45,987 views 16332 16664 Successfully updated water intake for user rayyan2005: 1.4L, total: 10.0L
+INFO 2025-04-08 00:32:50,350 views 16332 16664 Received water update request: b'{"water_amount":1.3}'
+INFO 2025-04-08 00:32:50,391 views 16332 16664 Successfully updated water intake for user rayyan2005: 1.3L, total: 11.3L
+INFO 2025-04-08 00:33:10,178 views 16332 16664 Received water update request: b'{"water_amount":0.1}'
+INFO 2025-04-08 00:33:10,219 views 16332 16664 Successfully updated water intake for user rayyan2005: 0.1L, total: 11.4L
+ERROR 2025-04-08 00:35:02,870 views 16468 8272 Error initializing server session: no such table: healthapp_serversession
+ERROR 2025-04-08 00:35:18,217 views 7676 19756 Error initializing server session: no such table: healthapp_serversession
+ERROR 2025-04-08 00:35:24,794 views 8744 1772 Error initializing server session: no such table: healthapp_serversession
+ERROR 2025-04-08 00:35:31,643 views 2308 22352 Error initializing server session: no such table: healthapp_serversession
+INFO 2025-04-08 00:35:48,124 views 15892 18160 Server session initialized: 0ec4f125-f7a8-48b0-bb1a-2f21f51d0476
+INFO 2025-04-08 00:36:10,124 views 7808 7892 Server session initialized: 26f187c3-991a-45eb-80ea-43611be65ee9
+INFO 2025-04-08 00:36:18,525 views 7808 23324 Resetting water for user rayyan2005 in session 26f187c3-991a-45eb-80ea-43611be65ee9
+INFO 2025-04-08 00:36:25,954 views 7808 23324 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 00:36:25,970 views 7808 23324 Successfully updated water intake for user rayyan2005: 0.5L, total: 0.5L
+INFO 2025-04-08 00:36:28,470 views 7808 23324 Resetting water for user rayyan2005 in session 26f187c3-991a-45eb-80ea-43611be65ee9
+INFO 2025-04-08 00:36:34,913 views 7808 23324 Resetting water for user rayyan2005 in session 26f187c3-991a-45eb-80ea-43611be65ee9
+INFO 2025-04-08 00:36:51,657 views 7808 23324 Resetting water for user rayyan2005 in session 26f187c3-991a-45eb-80ea-43611be65ee9
+INFO 2025-04-08 00:39:40,515 views 5984 18212 Server session initialized: e4547ea4-2a53-46e4-b5ec-ed5c3b7686a8
+INFO 2025-04-08 00:39:50,863 views 20860 24532 Server session initialized: 4929d29b-af82-494f-aaa5-18b47ede557f
+INFO 2025-04-08 00:40:43,062 views 14160 22668 Server session initialized: 85227ffd-c3ca-4645-9dbf-a85dc524ebd9
+INFO 2025-04-08 00:40:48,382 views 14160 19296 Resetting water for user rayyan2005 in session 85227ffd-c3ca-4645-9dbf-a85dc524ebd9
+INFO 2025-04-08 00:42:23,846 views 18512 20916 Server session initialized: 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 00:42:29,783 views 18512 2496 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 00:45:58,317 views 18512 2496 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 01:06:28,051 views 18512 11840 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 01:06:56,826 views 18512 11840 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 01:07:31,003 views 18512 11840 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 01:08:39,426 views 18512 11840 Resetting water for user rayyan2005 in session 8b89fb1d-1b17-49f8-a16c-04b7f2a421bd
+INFO 2025-04-08 01:08:50,690 views 18512 11840 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 01:08:50,739 views 18512 11840 Successfully updated water intake for user rayyan2005: 1.0L, total: 1.0L
+INFO 2025-04-08 01:16:14,953 views 18512 20572 Received water update request: b'{"water_amount":1}'
+INFO 2025-04-08 01:16:14,977 views 18512 20572 Successfully updated water intake for user rayyan2005: 1.0L, total: 2.0L
+INFO 2025-04-08 01:16:19,924 views 18512 20572 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 01:16:19,964 views 18512 20572 Successfully updated water intake for user rayyan2005: 0.5L, total: 2.5L
+INFO 2025-04-08 01:17:58,904 views 9032 17872 Server session initialized: 7f135129-605f-4189-a1ed-0f8be6f6a32f
+INFO 2025-04-08 01:18:03,139 views 9032 6796 Resetting water for user rayyan2005 in session 7f135129-605f-4189-a1ed-0f8be6f6a32f
+INFO 2025-04-08 01:18:09,810 views 9032 6796 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 01:18:09,824 views 9032 6796 Successfully updated water intake for user rayyan2005: 0.5L, total: 0.5L
+INFO 2025-04-08 01:18:20,852 views 9032 6796 Received water update request: b'{"water_amount":1.3}'
+INFO 2025-04-08 01:18:20,900 views 9032 6796 Successfully updated water intake for user rayyan2005: 1.3L, total: 1.8L
+INFO 2025-04-08 01:18:49,045 views 9032 6796 Received water update request: b'{"water_amount":2.1}'
+INFO 2025-04-08 01:18:49,085 views 9032 6796 Successfully updated water intake for user rayyan2005: 2.1L, total: 3.9000000000000004L
+INFO 2025-04-08 01:18:54,857 views 9032 6796 Received water update request: b'{"water_amount":0.4}'
+INFO 2025-04-08 01:18:54,873 views 9032 6796 Successfully updated water intake for user rayyan2005: 0.4L, total: 4.300000000000001L
+INFO 2025-04-08 01:19:48,242 views 19820 22400 Server session initialized: 1ba0eda9-9d2d-4fbd-a9e8-fd00db2b1a48
+INFO 2025-04-08 01:19:56,405 views 19820 22852 Resetting water for user rayyan2005 in session 1ba0eda9-9d2d-4fbd-a9e8-fd00db2b1a48
+INFO 2025-04-08 01:20:00,417 views 19820 22852 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 01:20:00,453 views 19820 22852 Successfully updated water intake for user rayyan2005: 0.5L, total: 0.5L
+INFO 2025-04-08 01:25:52,555 views 8952 22624 Server session initialized: ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:25:55,964 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:26:01,989 views 8952 5024 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 01:26:02,031 views 8952 5024 Successfully updated water intake for user rayyan2005: 0.5L, total: 0.5L
+INFO 2025-04-08 01:26:04,942 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:26:40,821 views 8952 5024 Received water update request: b'{"water_amount":0.7}'
+INFO 2025-04-08 01:26:40,837 views 8952 5024 Successfully updated water intake for user rayyan2005: 0.7L, total: 0.7L
+INFO 2025-04-08 01:27:09,174 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:27:38,532 views 8952 5024 Received water update request: b'{"water_amount":0.5}'
+INFO 2025-04-08 01:27:38,548 views 8952 5024 Successfully updated water intake for user rayyan2005: 0.5L, total: 0.5L
+INFO 2025-04-08 01:27:53,489 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:28:20,188 views 8952 5024 Received water update request: b'{"water_amount":0.8}'
+INFO 2025-04-08 01:28:20,228 views 8952 5024 Successfully updated water intake for user rayyan2005: 0.8L, total: 0.8L
+INFO 2025-04-08 01:29:05,120 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 01:29:54,708 views 8952 5024 Resetting water for user rayyan2005 in session ce727fca-c43e-45be-b033-bb97d5a0d248
+INFO 2025-04-08 17:32:31,404 views 9888 22012 Server session initialized: 2ac9a6ae-08eb-40a4-ad71-e6f11fc608d9
+INFO 2025-04-08 17:32:34,219 views 9888 13204 Resetting water for user rayyan2005 in session 2ac9a6ae-08eb-40a4-ad71-e6f11fc608d9

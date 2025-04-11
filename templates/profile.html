@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - HealthAI{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto p-4">
+    <div class="stats-card rounded-xl shadow-lg p-8">
+        <h1 class="text-2xl font-semibold mb-6 text-blue-400">Your Profile</h1>
+        
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Basic Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Height (cm)
+                    </label>
+                    <input type="number" 
+                           name="height" 
+                           value="{{ user_profile.height }}"
+                           class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                        Weight (kg)
+                    </label>
+                    <input type="number" 
+                           name="weight" 
+                           value="{{ user_profile.weight }}"
+                           step="0.1"
+                           class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+            </div>
+
+            <!-- Body Type -->
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Body Type
+                </label>
+                <select name="body_type"
+                        class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="ectomorph" {% if user_profile.body_type == 'ectomorph' %}selected{% endif %}>
+                        Ectomorph (Lean and Long)
+                    </option>
+                    <option value="mesomorph" {% if user_profile.body_type == 'mesomorph' %}selected{% endif %}>
+                        Mesomorph (Muscular and Well-built)
+                    </option>
+                    <option value="endomorph" {% if user_profile.body_type == 'endomorph' %}selected{% endif %}>
+                        Endomorph (Soft and Round)
+                    </option>
+                </select>
+            </div>
+
+            <!-- Activity Level -->
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Activity Level
+                </label>
+                <select name="activity_level"
+                        class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="sedentary" {% if user_profile.activity_level == 'sedentary' %}selected{% endif %}>
+                        Sedentary (Little to no exercise)
+                    </option>
+                    <option value="light" {% if user_profile.activity_level == 'light' %}selected{% endif %}>
+                        Light (Exercise 1-3 times/week)
+                    </option>
+                    <option value="moderate" {% if user_profile.activity_level == 'moderate' %}selected{% endif %}>
+                        Moderate (Exercise 3-5 times/week)
+                    </option>
+                    <option value="active" {% if user_profile.activity_level == 'active' %}selected{% endif %}>
+                        Active (Exercise 6-7 times/week)
+                    </option>
+                    <option value="very_active" {% if user_profile.activity_level == 'very_active' %}selected{% endif %}>
+                        Very Active (Professional athlete)
+                    </option>
+                </select>
+            </div>
+
+            <!-- Goals -->
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Fitness Goals
+                </label>
+                <select name="fitness_goal"
+                        class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="weight_loss" {% if user_profile.fitness_goal == 'weight_loss' %}selected{% endif %}>
+                        Weight Loss
+                    </option>
+                    <option value="muscle_gain" {% if user_profile.fitness_goal == 'muscle_gain' %}selected{% endif %}>
+                        Muscle Gain
+                    </option>
+                    <option value="maintenance" {% if user_profile.fitness_goal == 'maintenance' %}selected{% endif %}>
+                        Maintenance
+                    </option>
+                    <option value="endurance" {% if user_profile.fitness_goal == 'endurance' %}selected{% endif %}>
+                        Endurance
+                    </option>
+                </select>
+            </div>
+
+            <!-- Dietary Preferences -->
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Dietary Preferences
+                </label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" 
+                               name="dietary_preferences" 
+                               value="vegetarian"
+                               {% if 'vegetarian' in user_profile.dietary_preferences %}checked{% endif %}
+                               class="rounded text-blue-500 focus:ring-blue-500 bg-gray-800 border-gray-700">
+                        <span class="text-gray-300">Vegetarian</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" 
+                               name="dietary_preferences" 
+                               value="vegan"
+                               {% if 'vegan' in user_profile.dietary_preferences %}checked{% endif %}
+                               class="rounded text-blue-500 focus:ring-blue-500 bg-gray-800 border-gray-700">
+                        <span class="text-gray-300">Vegan</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" 
+                               name="dietary_preferences" 
+                               value="keto"
+                               {% if 'keto' in user_profile.dietary_preferences %}checked{% endif %}
+                               class="rounded text-blue-500 focus:ring-blue-500 bg-gray-800 border-gray-700">
+                        <span class="text-gray-300">Keto</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" 
+                               name="dietary_preferences" 
+                               value="paleo"
+                               {% if 'paleo' in user_profile.dietary_preferences %}checked{% endif %}
+                               class="rounded text-blue-500 focus:ring-blue-500 bg-gray-800 border-gray-700">
+                        <span class="text-gray-300">Paleo</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Health Conditions -->
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">
+                    Health Conditions
+                </label>
+                <textarea name="health_conditions"
+                          class="input-field w-full px-4 py-2 border border-gray-700 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200"
+                          rows="3"
+                          placeholder="List any health conditions or allergies...">{{ user_profile.health_conditions }}</textarea>
+            </div>
+
+            <div class="flex justify-end">
+                <button type="submit"
+                        class="button-primary px-6 py-2 text-white rounded-lg">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 
